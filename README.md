@@ -27,7 +27,17 @@ increasing the complexity of each task. Every difficulty has approximately the s
 Every time the user says "next", the agent provides the information required to complete
 the next level. This information includes:
 
-1. the method the user should implement for the level
+1. the method the user should implement for the level, with the format:
+
+        def EXAMPLE_METHOD(arg1: int, arg2: str, kwarg1: str=""):
+            '''
+            description:    this is an example description of the method to implement
+            params:         arg1 (int):     an example integer
+                            args2 (str):    an example string
+                            kwarg (str):    an example kwarg string
+            returns:        None | str:     an example return value
+            '''
+
 2. a json formatted string in the format:
 
 ```json
