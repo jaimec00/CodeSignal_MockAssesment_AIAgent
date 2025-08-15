@@ -32,10 +32,10 @@ the next level. This information should include:
             {
                 "testcase": [
                     {
-                        "method": method1, 
-                        "args": [arg1, arg2], 
-                        "kwargs": {kw1: kwarg1}, 
-                        "output": output1
+                        "method": "method1", 
+                        "args": ["arg1", "arg2"], 
+                        "kwargs": {"kw1": "kwarg1"}, 
+                        "output": "output1"
                     }
                 ]
             }
@@ -44,7 +44,7 @@ the next level. This information should include:
             {
                 "0": [
                     {"method": "FILE_UPLOAD", "args": ["cars.txt", "200kb"], "kwargs": {}, "output": null},
-                    {"method": "FILE_GET", "args": ["cars.txt"], "kwargs": {}", "output": 200}
+                    {"method": "FILE_GET", "args": ["cars.txt"], "kwargs": {}, "output": 200}
                 ],
                 "1": [
                     {"method": "FILE_UPLOAD", "args": ["cars.txt", "100kb"], "kwargs": {}, "output": null},
@@ -53,6 +53,7 @@ the next level. This information should include:
                     {"method": "FILE_SEARCH", "args": ["ca"], "kwargs": {}, "output": ["cars.txt", "cars2.txt"]}
                 ]
             }
+            
         where each testcase index is independant, i.e. once testcase 0 is finished,
         testcase 1 starts from scratch. The testcases should be self-consistent, meaning
         that, in this example, once cars.txt is uploaded, any subsequent operations within the 
