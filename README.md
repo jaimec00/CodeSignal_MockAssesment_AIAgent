@@ -27,36 +27,37 @@ increasing the complexity of each task. Every difficulty has approximately the s
 Every time the user says "next", the agent provides the information required to complete
 the next level. This information includes:
 
-    1. the method the user should implement for the level
-    2. a json formatted string in the format:
+1. the method the user should implement for the level
+2. a json formatted string in the format:
+
 ```json
-            {
-                "testcase": [
-                    {
-                        "method": "method1", 
-                        "args": ["arg1", "arg2"], 
-                        "kwargs": {"kw1": "kwarg1"}, 
-                        "output": "output1"
-                    }
-                ]
-            }
+{
+    "testcase": [
+        {
+            "method": "method1", 
+            "args": ["arg1", "arg2"], 
+            "kwargs": {"kw1": "kwarg1"}, 
+            "output": "output1"
+        }
+    ]
+}
 ```
 
-        here is an example of what it looks like:
+here is an example of what it looks like:
 
 ```json
-            {
-                "0": [
-                    {"method": "FILE_UPLOAD", "args": ["cars.txt", "200kb"], "kwargs": {}, "output": null},
-                    {"method": "FILE_GET", "args": ["cars.txt"], "kwargs": {}, "output": 200}
-                ],
-                "1": [
-                    {"method": "FILE_UPLOAD", "args": ["cars.txt", "100kb"], "kwargs": {}, "output": null},
-                    {"method": "FILE_COPY", "args": ["cars.txt", "cars2.txt"], "kwargs": {}, "output": null},
-                    {"method": "FILE_GET", "args": ["cars2.txt"], "kwargs": {}, "output": 100},
-                    {"method": "FILE_SEARCH", "args": ["ca"], "kwargs": {}, "output": ["cars.txt", "cars2.txt"]}
-                ]
-            }
+{
+    "0": [
+        {"method": "FILE_UPLOAD", "args": ["cars.txt", "200kb"], "kwargs": {}, "output": null},
+        {"method": "FILE_GET", "args": ["cars.txt"], "kwargs": {}, "output": 200}
+    ],
+    "1": [
+        {"method": "FILE_UPLOAD", "args": ["cars.txt", "100kb"], "kwargs": {}, "output": null},
+        {"method": "FILE_COPY", "args": ["cars.txt", "cars2.txt"], "kwargs": {}, "output": null},
+        {"method": "FILE_GET", "args": ["cars2.txt"], "kwargs": {}, "output": 100},
+        {"method": "FILE_SEARCH", "args": ["ca"], "kwargs": {}, "output": ["cars.txt", "cars2.txt"]}
+    ]
+}
 ```
 
 All the user has to do is copy the agent's generated json string and paste it in the corresponding json file (e.g. assesments/my_first_assesment/testcases/level1.json for level 1). The user may then implement their solution in assesments/my_first_assesment/answer.py. To run the testcases, simply run
