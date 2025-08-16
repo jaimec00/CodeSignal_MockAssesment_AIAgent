@@ -11,7 +11,19 @@ Essentially the idea is to streamline the process as much as possible. This repo
 I have published a premade agent using ChatGPT (version GPT5) at https://chatgpt.com/g/g-689f50f4514081918a47d77550c6168e-codesignal-mock-assesment-agent.
 It uses the prompt.txt as a system prompt and the pdf file as a knowledge base. 
 
-Before using the agent, the user should copy the assesments/base folder to assesments/my_first_assesment and only edit the files in assesments/my_first_assesment throughout the assesment. 
+Once you have your agent ready, go to the ```assesments``` directory, as this is where all of the following will take place
+
+```shell
+cd assesments
+```
+
+you will then need to copy the base folder to a new directory:
+
+```shell
+cp -r base my_first_assesment
+```
+
+From this point onwards, the user should only edit files inside the ```my_first_assesment``` directory. 
 
 Once the user says, "start", the agent will output a high level description of the generated project. The user may also say "start {easy/medium/hard}" to specify a difficulty. The default difficulty is easy. 
 
@@ -29,14 +41,18 @@ the next level. This information includes:
 
 1. the method the user should implement for the level, with the format:
 
-        def EXAMPLE_METHOD(arg1: int, arg2: str, kwarg1: str=""):
-            '''
-            description:    this is an example description of the method to implement
-            params:         arg1 (int):     an example integer
-                            args2 (str):    an example string
-                            kwarg (str):    an example kwarg string
-            returns:        None | str:     an example return value
-            '''
+```python
+def EXAMPLE_METHOD(self, arg1: int, arg2: str, kwarg1: str=""):
+    '''
+    description:    this is an example description of the method to implement
+    params:         arg1 (int):     an example integer
+                    arg2 (str):     an example string
+                    kwarg (str):    an example kwarg string
+    returns:        None | str:     an example return value
+    notes:                          any special cases the user should know about
+    '''
+    pass
+```
 
 2. a json formatted string in the format:
 
@@ -58,11 +74,11 @@ here is an example of what it looks like:
 ```json
 {
     "0": [
-        {"method": "FILE_UPLOAD", "args": ["cars.txt", "200kb"], "kwargs": {}, "output": null},
+        {"method": "FILE_UPLOAD", "args": ["cars.txt"], "kwargs": {"size": "200kb"}, "output": null},
         {"method": "FILE_GET", "args": ["cars.txt"], "kwargs": {}, "output": 200}
     ],
     "1": [
-        {"method": "FILE_UPLOAD", "args": ["cars.txt", "100kb"], "kwargs": {}, "output": null},
+        {"method": "FILE_UPLOAD", "args": ["cars.txt"], "kwargs": {"size": "100kb"}, "output": null},
         {"method": "FILE_COPY", "args": ["cars.txt", "cars2.txt"], "kwargs": {}, "output": null},
         {"method": "FILE_GET", "args": ["cars2.txt"], "kwargs": {}, "output": 100},
         {"method": "FILE_SEARCH", "args": ["ca"], "kwargs": {}, "output": ["cars.txt", "cars2.txt"]}
@@ -70,15 +86,37 @@ here is an example of what it looks like:
 }
 ```
 
-All the user has to do is copy the agent's generated json string and paste it in the corresponding json file (e.g. assesments/my_first_assesment/testcases/level1.json for level 1). The user may then implement their solution in assesments/my_first_assesment/answer.py. To run the testcases, simply run
+All the user has to do is copy the agent's generated json string and paste it in the corresponding json file (e.g. ```my_first_assesment/testcases/level1.json``` for level 1). 
+
+The user may then implement their solution in ```my_first_assesment/answer.py```. 
+
+```python
+class Answer:
+    def __init__(self):
+        pass # edit as needed
+
+    def run(self, method: str, *args, **kwargs): # do NOT edit this method
+        return getattr(self, method)(*args, **kwargs)
+
+    # Your implemented methods go here
+    def EXAMPLE_METHOD(self, arg1: int, arg2: str, kwarg1: str=""):
+        '''
+        description:    this is an example description of the method to implement
+        params:         arg1 (int):     an example integer
+                        arg2 (str):     an example string
+                        kwarg (str):    an example kwarg string
+        returns:        None | str:     an example return value
+        notes:                          any special cases the user should know about
+        '''
+        return None
+```
+
+To run the testcases, simply run
 
 ```shell
-cd assesments
 python run_test_cases.py --assesment_dir my_first_assesment --level 1
 ```
 
 The test cases will be run based on the json file. Once the user finishes this level and passes the test cases, the user can prompt the agent for the next level by saying "next". This is done until all four levels are completed. 
 
-This should give a more realistic testing environment and allow users to practice for the ICF assesment.
-
-    
+If you have any questions, you may also ask the agent about how to use the agent or how to implement/run your code, as it also has access to this README file in its knowledge base.
