@@ -17,6 +17,19 @@ Once you have your agent ready, go to the ```assesments``` directory, as this is
 cd assesments
 ```
 
+the assesments directory looks like this
+
+```pgsq1
+base/
+    answer.py
+    testcases/
+        level1.json
+        level2.json
+        level3.json
+        level4.json
+run_test_cases.py
+```
+
 you will then need to copy the base folder to a new directory:
 
 ```shell
