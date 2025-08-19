@@ -5,8 +5,58 @@ import importlib.util
 import sys
 from pathlib import Path
 
-def main(args):
+exceptions = {
+    "ArithmeticError": ArithmeticError,
+    "FloatingPointError": FloatingPointError,
+    "OverflowError": OverflowError,
+    "ZeroDivisionError": ZeroDivisionError,
+    "AssertionError": AssertionError,
+    "AttributeError": AttributeError,
+    "BufferError": BufferError,
+    "EOFError": EOFError,
+    "ImportError": ImportError,
+    "ModuleNotFoundError": ModuleNotFoundError,
+    "LookupError": LookupError,
+    "IndexError": IndexError,
+    "KeyError": KeyError,
+    "MemoryError": MemoryError,
+    "NameError": NameError,
+    "UnboundLocalError": UnboundLocalError,
+    "OSError": OSError,
+    "BlockingIOError": BlockingIOError,
+    "ChildProcessError": ChildProcessError,
+    "ConnectionError": ConnectionError,
+    "BrokenPipeError": BrokenPipeError,
+    "ConnectionAbortedError": ConnectionAbortedError,
+    "ConnectionRefusedError": ConnectionRefusedError,
+    "ConnectionResetError": ConnectionResetError,
+    "FileExistsError": FileExistsError,
+    "FileNotFoundError": FileNotFoundError,
+    "InterruptedError": InterruptedError,
+    "IsADirectoryError": IsADirectoryError,
+    "NotADirectoryError": NotADirectoryError,
+    "PermissionError": PermissionError,
+    "ProcessLookupError": ProcessLookupError,
+    "TimeoutError": TimeoutError,
+    "ReferenceError": ReferenceError,
+    "RuntimeError": RuntimeError,
+    "NotImplementedError": NotImplementedError,
+    "RecursionError": RecursionError,
+    "StopIteration": StopIteration,
+    "StopAsyncIteration": StopAsyncIteration,
+    "SyntaxError": SyntaxError,
+    "IndentationError": IndentationError,
+    "TabError": TabError,
+    "SystemError": SystemError,
+    "TypeError": TypeError,
+    "ValueError": ValueError,
+    "UnicodeError": UnicodeError,
+    "UnicodeDecodeError": UnicodeDecodeError,
+    "UnicodeEncodeError": UnicodeEncodeError,
+    "UnicodeTranslateError": UnicodeTranslateError
+}
 
+def main(args):
 
     # load the testcases
     testcases = {}
@@ -33,13 +83,23 @@ def main(args):
 
                 for operation_idx, operation in enumerate(testcase):
 
-                    output = answer.run(operation["method"], *operation.get("args", []), **operation.get("kwargs", {}))
                     expected = operation["output"]
+                    method, args, kwargs = operation["method"], operation["args"], operation["kwargs"]
+                    incorrect_str = (f"\n\nincorrect output:\n\tlevel: {level}\n\ttestcase: {testcase_idx}\n\toperation: {operation_idx}"
+                                    f"\n\tmethod: {method}\n\targs: {args}\n\tkwargs: {kwargs}"
+                                    f"\n\texpected: {expected}")
 
-                    incorrect_str = f"\n\nincorrect output:\n\tlevel: {level}\n\ttestcase: {testcase_idx}\n\toperation: {operation_idx}"\
-                                    f"\n\tmethod: {operation['method']}\n\targs: {operation.get('args', [])}\n\tkwargs: {operation.get('kwargs', {})}"\
-                                    f"\n\texpected {expected}\n\tgot {output}\n"
+                    try:
+                        output = answer.run(method, *args, **kwargs)
+                    except Exception as e: # if it raises an exception, check if it is the expected one
+                        if isinstance(expected, str) and expected in exceptions:
+                            expected = exceptions[expected]
+                            output = type(e)
+                        else:
+                            print(incorrect_str + f"\n\tgot: {type(e)}\n")
+                            raise e
 
+                    incorrect_str += f"\n\tgot: {output}\n"
                     self.assertEqual(output, expected, incorrect_str)
             
         def test_level1(self):

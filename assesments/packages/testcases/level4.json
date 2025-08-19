@@ -1,0 +1,71 @@
+{
+  "0": [
+    {"method": "PKG_CREATE_AT", "args": [5, "A", 10, "X"], "kwargs": {}, "output": null},
+    {"method": "PKG_SET_WEIGHT_AT", "args": [6, "A", 20], "kwargs": {}, "output": null},
+    {"method": "PKG_REDIRECT_AT", "args": [7, "A", "Y"], "kwargs": {}, "output": null},
+    {"method": "PKG_GET_AT", "args": [8, "A"], "kwargs": {}, "output": [20, "Y"]},
+    {"method": "ROLLBACK", "args": [6], "kwargs": {}, "output": null},
+    {"method": "PKG_GET_AT", "args": [8, "A"], "kwargs": {}, "output": [20, "X"]}
+  ],
+  "1": [
+    {"method": "PKG_CREATE_AT", "args": [1, "B", 5, "AAA"], "kwargs": {}, "output": null},
+    {"method": "PKG_SET_WEIGHT_AT", "args": [2, "B", 6], "kwargs": {}, "output": null},
+    {"method": "PKG_REDIRECT_AT", "args": [3, "B", "BBB"], "kwargs": {}, "output": null},
+    {"method": "ROLLBACK", "args": [2], "kwargs": {}, "output": null},
+    {"method": "PKG_GET_AT", "args": [4, "B"], "kwargs": {}, "output": [6, "AAA"]}
+  ],
+  "2": [
+    {"method": "PKG_CREATE_AT", "args": [0, "C", 100, "D1"], "kwargs": {}, "output": null},
+    {"method": "PKG_REDIRECT_AT", "args": [5, "C", "D2"], "kwargs": {}, "output": null},
+    {"method": "PKG_MARK_DELIVERED_AT", "args": [10, "C"], "kwargs": {}, "output": null},
+    {"method": "ROLLBACK", "args": [4], "kwargs": {}, "output": null},
+    {"method": "PKG_GET_AT", "args": [10, "C"], "kwargs": {}, "output": [100, "D1"]}
+  ],
+  "3": [
+    {"method": "PKG_CREATE_AT", "args": [5, "D", 1, "Z"], "kwargs": {}, "output": null},
+    {"method": "PKG_SET_WEIGHT_AT", "args": [6, "D", 2], "kwargs": {}, "output": null},
+    {"method": "ROLLBACK", "args": [5], "kwargs": {}, "output": null},
+    {"method": "PKG_GET_AT", "args": [6, "D"], "kwargs": {}, "output": [1, "Z"]}
+  ],
+  "4": [
+    {"method": "PKG_CREATE_AT", "args": [2, "E", 50, "M"], "kwargs": {}, "output": null},
+    {"method": "PKG_SET_WEIGHT_AT", "args": [3, "E", 55], "kwargs": {}, "output": null},
+    {"method": "PKG_REDIRECT_AT", "args": [4, "E", "N"], "kwargs": {}, "output": null},
+    {"method": "ROLLBACK", "args": [3], "kwargs": {}, "output": null},
+    {"method": "PKG_GET_AT", "args": [10, "E"], "kwargs": {}, "output": [55, "M"]}
+  ],
+  "5": [
+    {"method": "PKG_CREATE_AT", "args": [0, "F", 1, "X"], "kwargs": {}, "output": null},
+    {"method": "ROLLBACK", "args": [-1], "kwargs": {}, "output": "ValueError"}
+  ],
+  "6": [
+    {"method": "PKG_CREATE_AT", "args": [1, "G", 5, "S1"], "kwargs": {}, "output": null},
+    {"method": "PKG_REDIRECT_AT", "args": [2, "G", "S2"], "kwargs": {}, "output": null},
+    {"method": "PKG_SET_WEIGHT_AT", "args": [3, "G", 6], "kwargs": {}, "output": null},
+    {"method": "ROLLBACK", "args": [2], "kwargs": {}, "output": null},
+    {"method": "PKG_GET_AT", "args": [5, "G"], "kwargs": {}, "output": [5, "S2"]}
+  ],
+  "7": [
+    {"method": "PKG_CREATE_AT", "args": [0, "H", 10, "P"], "kwargs": {}, "output": null},
+    {"method": "PKG_SET_WEIGHT_AT", "args": [5, "H", 20], "kwargs": {}, "output": null},
+    {"method": "PKG_MARK_DELIVERED_AT", "args": [6, "H"], "kwargs": {}, "output": null},
+    {"method": "ROLLBACK", "args": [4], "kwargs": {}, "output": null},
+    {"method": "PKG_GET_AT", "args": [10, "H"], "kwargs": {}, "output": [10, "P"]}
+  ],
+  "8": [
+    {"method": "PKG_CREATE_AT", "args": [10, "I", 100, "SFO"], "kwargs": {}, "output": null},
+    {"method": "PKG_SET_WEIGHT_AT", "args": [12, "I", 110], "kwargs": {}, "output": null},
+    {"method": "PKG_REDIRECT_AT", "args": [14, "I", "OAK"], "kwargs": {}, "output": null},
+    {"method": "PKG_MARK_DELIVERED_AT", "args": [16, "I"], "kwargs": {}, "output": null},
+    {"method": "ROLLBACK", "args": [12], "kwargs": {}, "output": null},
+    {"method": "PKG_GET_AT", "args": [20, "I"], "kwargs": {}, "output": [110, "SFO"]}
+  ],
+  "9": [
+    {"method": "PKG_CREATE_AT", "args": [1, "J", 5, "A"], "kwargs": {}, "output": null},
+    {"method": "PKG_SET_WEIGHT_AT", "args": [3, "J", 6], "kwargs": {}, "output": null},
+    {"method": "PKG_REDIRECT_AT", "args": [5, "J", "B"], "kwargs": {}, "output": null},
+    {"method": "PKG_MARK_DELIVERED_AT", "args": [7, "J"], "kwargs": {}, "output": null},
+    {"method": "ROLLBACK", "args": [3], "kwargs": {}, "output": null},
+    {"method": "PKG_GET_AT", "args": [10, "J"], "kwargs": {}, "output": [6, "A"]}
+  ]
+}

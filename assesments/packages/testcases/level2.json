@@ -1,0 +1,70 @@
+{
+  "0": [
+    {"method": "PKG_CREATE", "args": ["P1", 100, "NYC"], "kwargs": {}, "output": null},
+    {"method": "PKG_CREATE", "args": ["P2", 200, "BOS"], "kwargs": {}, "output": null},
+    {"method": "PKG_CREATE", "args": ["P3", 300, "NYC"], "kwargs": {}, "output": null},
+    {"method": "PKG_LIST_BY_DEST", "args": ["NYC"], "kwargs": {}, "output": ["P1", "P3"]},
+    {"method": "PKG_LIST_BY_DEST", "args": ["CHI"], "kwargs": {}, "output": []},
+    {"method": "PKG_TOP_N_HEAVIEST", "args": [2], "kwargs": {}, "output": [["P3", 300, "NYC"], ["P2", 200, "BOS"]]},
+    {"method": "PKG_AVG_WEIGHT", "args": [], "kwargs": {}, "output": 200.0}
+  ],
+  "1": [
+    {"method": "PKG_CREATE", "args": ["X1", 10, "DAL"], "kwargs": {}, "output": null},
+    {"method": "PKG_CREATE", "args": ["X2", 30, "DAL"], "kwargs": {}, "output": null},
+    {"method": "PKG_CREATE", "args": ["X3", 20, "HOU"], "kwargs": {}, "output": null},
+    {"method": "PKG_LIST_BY_DEST", "args": ["DAL"], "kwargs": {}, "output": ["X1", "X2"]},
+    {"method": "PKG_TOP_N_HEAVIEST", "args": [3], "kwargs": {}, "output": [["X2", 30, "DAL"], ["X3", 20, "HOU"], ["X1", 10, "DAL"]]},
+    {"method": "PKG_AVG_WEIGHT", "args": [], "kwargs": {}, "output": 20.0}
+  ],
+  "2": [
+    {"method": "PKG_CREATE", "args": ["H1", 5, "SEA"], "kwargs": {}, "output": null},
+    {"method": "PKG_CREATE", "args": ["H2", 50, "SEA"], "kwargs": {}, "output": null},
+    {"method": "PKG_CREATE", "args": ["H3", 25, "PDX"], "kwargs": {}, "output": null},
+    {"method": "PKG_TOP_N_HEAVIEST", "args": [1], "kwargs": {}, "output": [["H2", 50, "SEA"]]},
+    {"method": "PKG_LIST_BY_DEST", "args": ["SEA"], "kwargs": {}, "output": ["H1", "H2"]},
+    {"method": "PKG_AVG_WEIGHT", "args": [], "kwargs": {}, "output": 26.67}
+  ],
+  "3": [
+    {"method": "PKG_CREATE", "args": ["N1", 40, "ATL"], "kwargs": {}, "output": null},
+    {"method": "PKG_CREATE", "args": ["N2", 60, "ATL"], "kwargs": {}, "output": null},
+    {"method": "PKG_CREATE", "args": ["N3", 20, "MIA"], "kwargs": {}, "output": null},
+    {"method": "PKG_CREATE", "args": ["N4", 80, "MIA"], "kwargs": {}, "output": null},
+    {"method": "PKG_LIST_BY_DEST", "args": ["MIA"], "kwargs": {}, "output": ["N3", "N4"]},
+    {"method": "PKG_TOP_N_HEAVIEST", "args": [2], "kwargs": {}, "output": [["N4", 80, "MIA"], ["N2", 60, "ATL"]]},
+    {"method": "PKG_AVG_WEIGHT", "args": [], "kwargs": {}, "output": 50.0}
+  ],
+  "4": [
+    {"method": "PKG_CREATE", "args": ["Z1", 1, "PHX"], "kwargs": {}, "output": null},
+    {"method": "PKG_CREATE", "args": ["Z2", 2, "PHX"], "kwargs": {}, "output": null},
+    {"method": "PKG_CREATE", "args": ["Z3", 3, "PHX"], "kwargs": {}, "output": null},
+    {"method": "PKG_LIST_BY_DEST", "args": ["PHX"], "kwargs": {}, "output": ["Z1", "Z2", "Z3"]},
+    {"method": "PKG_TOP_N_HEAVIEST", "args": [5], "kwargs": {}, "output": [["Z3", 3, "PHX"], ["Z2", 2, "PHX"], ["Z1", 1, "PHX"]]},
+    {"method": "PKG_AVG_WEIGHT", "args": [], "kwargs": {}, "output": 2.0}
+  ],
+  "5": [
+    {"method": "PKG_TOP_N_HEAVIEST", "args": [0], "kwargs": {}, "output": []},
+    {"method": "PKG_AVG_WEIGHT", "args": [], "kwargs": {}, "output": null}
+  ],
+  "6": [
+    {"method": "PKG_CREATE", "args": ["E1", 100, "DEN"], "kwargs": {}, "output": null},
+    {"method": "PKG_LIST_BY_DEST", "args": [""], "kwargs": {}, "output": "ValueError"}
+  ],
+  "7": [
+    {"method": "PKG_CREATE", "args": ["NEG1", 15, "LAX"], "kwargs": {}, "output": null},
+    {"method": "PKG_TOP_N_HEAVIEST", "args": [-1], "kwargs": {}, "output": "ValueError"}
+  ],
+  "8": [
+    {"method": "PKG_CREATE", "args": ["M1", 400, "SFO"], "kwargs": {}, "output": null},
+    {"method": "PKG_CREATE", "args": ["M2", 600, "SFO"], "kwargs": {}, "output": null},
+    {"method": "PKG_CREATE", "args": ["M3", 500, "OAK"], "kwargs": {}, "output": null},
+    {"method": "PKG_TOP_N_HEAVIEST", "args": [2], "kwargs": {}, "output": [["M2", 600, "SFO"], ["M3", 500, "OAK"]]},
+    {"method": "PKG_AVG_WEIGHT", "args": [], "kwargs": {}, "output": 500.0}
+  ],
+  "9": [
+    {"method": "PKG_CREATE", "args": ["AVG1", 1, "BUF"], "kwargs": {}, "output": null},
+    {"method": "PKG_CREATE", "args": ["AVG2", 2, "BUF"], "kwargs": {}, "output": null},
+    {"method": "PKG_CREATE", "args": ["AVG3", 3, "BUF"], "kwargs": {}, "output": null},
+    {"method": "PKG_CREATE", "args": ["AVG4", 4, "BUF"], "kwargs": {}, "output": null},
+    {"method": "PKG_AVG_WEIGHT", "args": [], "kwargs": {}, "output": 2.5}
+  ]
+}
